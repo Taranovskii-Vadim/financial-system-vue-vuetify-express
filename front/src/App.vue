@@ -6,6 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import MainLayout from "@/components/MainLayout.vue";
 import EmptyLayout from "@/components/EmptyLayout.vue";
 
 export default defineComponent({
@@ -15,7 +16,7 @@ export default defineComponent({
       return `${this.$route.meta.layout}-layout`;
     },
   },
-  components: { EmptyLayout },
+  components: { EmptyLayout, MainLayout },
 });
 </script>
 

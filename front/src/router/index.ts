@@ -4,7 +4,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     name: "home",
+    meta: { layout: "main" },
     component: () => import("../pages/HomePage.vue"),
+  },
+  {
+    path: "/categories",
+    name: "categories",
+    meta: { layout: "main" },
+    component: () => import("../pages/CategoriesPage.vue"),
   },
   {
     path: "/login",
