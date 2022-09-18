@@ -19,6 +19,12 @@ const routes: Array<RouteRecordRaw> = [
     meta: { layout: "empty" },
     component: () => import("../pages/LoginPage.vue"),
   },
+  {
+    path: "/signUp",
+    name: "signUp",
+    meta: { layout: "empty" },
+    component: () => import("../pages/SignUpPage.vue"),
+  },
 ];
 
 const router = createRouter({
