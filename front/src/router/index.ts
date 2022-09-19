@@ -2,6 +2,18 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
+    path: "/login",
+    name: "login",
+    meta: { layout: "empty" },
+    component: () => import("../pages/LoginPage.vue"),
+  },
+  {
+    path: "/signUp",
+    name: "signUp",
+    meta: { layout: "empty" },
+    component: () => import("../pages/SignUpPage.vue"),
+  },
+  {
     path: "/",
     name: "home",
     meta: { layout: "main" },
@@ -14,16 +26,34 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../pages/CategoriesPage.vue"),
   },
   {
-    path: "/login",
-    name: "login",
-    meta: { layout: "empty" },
-    component: () => import("../pages/LoginPage.vue"),
+    path: "/record",
+    name: "record",
+    meta: { layout: "main" },
+    component: () => import("../pages/RecordPage.vue"),
   },
   {
-    path: "/signUp",
-    name: "signUp",
-    meta: { layout: "empty" },
-    component: () => import("../pages/SignUpPage.vue"),
+    path: "/profile",
+    name: "profile",
+    meta: { layout: "main" },
+    component: () => import("../pages/ProfilePage.vue"),
+  },
+  {
+    path: "/planning",
+    name: "planning",
+    meta: { layout: "main" },
+    component: () => import("../pages/PlanningPage.vue"),
+  },
+  {
+    path: "/detail",
+    name: "detail",
+    meta: { layout: "main" },
+    component: () => import("../pages/DetailPage.vue"),
+  },
+  {
+    path: "/history",
+    name: "history",
+    meta: { layout: "main" },
+    component: () => import("../pages/HistoryPage.vue"),
   },
 ];
 
