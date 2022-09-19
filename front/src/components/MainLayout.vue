@@ -35,11 +35,9 @@ import Navbar from "@/components/Navbar.vue";
 export default defineComponent({
   name: "mainLayout",
   components: { Navbar },
-  data() {
-    return {
-      drawer: true,
-      rail: true,
-    };
-  },
+  data: () => ({
+    drawer: true,
+    rail: true,
+  }),
 });
 </script>
