@@ -1,13 +1,25 @@
 <template>
-  <v-list density="compact" nav>
-    <v-list-item
-      link
-      v-for="item in items"
-      :key="item.path"
-      :to="item.path"
-      :title="item.title"
-      :prepend-icon="item.icon"
-    />
+  <v-list class="root" density="compact" nav>
+    <div>
+      <v-list-item
+        link
+        v-for="item in topItems"
+        :key="item.path"
+        :to="item.path"
+        :title="item.title"
+        :prepend-icon="item.icon"
+      />
+    </div>
+    <div>
+      <v-list-item
+        link
+        v-for="item in bottomItems"
+        :key="item.path"
+        :to="item.path"
+        :title="item.title"
+        :prepend-icon="item.icon"
+      />
+    </div>
   </v-list>
 </template>
 
@@ -20,7 +32,7 @@ interface NavigationItems {
   icon: string;
 }
 
-const items: NavigationItems[] = [
+const topItems: NavigationItems[] = [
   { title: "Счет", path: "/", icon: "mdi-home-city" },
   { title: "История", path: "/history", icon: "mdi-home-city" },
   { title: "Планирование", path: "/planning", icon: "mdi-account" },
@@ -34,11 +46,24 @@ const items: NavigationItems[] = [
     path: "/categories",
     icon: "mdi-account-group-outline",
   },
-  // TODO add settings page in the end of list and logout button
+];
+
+const bottomItems: NavigationItems[] = [
+  { title: "Настройки", path: "/profile", icon: "mdi-home-city" },
+  { title: "Выйти", path: "/logout", icon: "mdi-home-city" },
 ];
 
 export default defineComponent({
   name: "navbarComponent",
-  data: () => ({ items }),
+  data: () => ({ topItems, bottomItems }),
 });
 </script>
+
+<style scoped>
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
+}
+</style>
