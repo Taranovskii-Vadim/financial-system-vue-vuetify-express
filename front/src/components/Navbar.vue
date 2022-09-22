@@ -64,6 +64,6 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 90%;
+  height: 93vh;
 }
 </style>

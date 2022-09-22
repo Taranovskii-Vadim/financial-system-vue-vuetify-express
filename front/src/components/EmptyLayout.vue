@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <router-view />
+    <div class="formWrapper"><router-view /></div>
   </div>
 </template>
 
@@ -11,5 +11,9 @@
   align-items: center;
   justify-content: center;
   background-color: #e8e8e8;
+}
+
+.formWrapper {
+  width: 650px;
 }
 </style>
