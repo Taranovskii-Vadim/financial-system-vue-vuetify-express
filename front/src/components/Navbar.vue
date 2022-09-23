@@ -50,7 +50,7 @@ const topItems: NavigationItems[] = [
 
 const bottomItems: NavigationItems[] = [
   { title: "Настройки", path: "/profile", icon: "mdi-home-city" },
-  { title: "Выйти", path: "/logout", icon: "mdi-home-city" },
+  { title: "Выйти", path: "/login?message=logout", icon: "mdi-home-city" },
 ];
 
 export default defineComponent({
