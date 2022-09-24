@@ -8,11 +8,16 @@
       :rules="passwordRules"
     />
     <v-btn block color="primary" type="submit">Войти</v-btn>
+    <v-snackbar v-model="snackbar" :timeout="2000">{{ text }}</v-snackbar>
   </v-form>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
+
+const mapText: Record<string, string> = {
+  logout: "Вы вышли из системы",
+};
 
 const commonRules = [(v: any) => !!v || "Field is required"];
 
@@ -29,12 +34,24 @@ const passwordRules = [
 export default defineComponent({
   name: "LoginPage",
   data: () => ({
+    // form
     valid: false,
     email: "",
     password: "",
     emailRules,
     passwordRules,
+    // snackbar
+    text: "",
+    snackbar: false,
   }),
+  mounted() {
+    const message = this.$route.query.message as string;
+
+    if (message) {
+      this.text = mapText[message] || "Что-то пошло не так...";
+      this.snackbar = true;
+    }
+  },
   methods: {
     handleSubmit() {
       if (this.valid) {
