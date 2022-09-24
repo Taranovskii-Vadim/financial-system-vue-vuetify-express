@@ -53,10 +53,20 @@ export default defineComponent({
     }
   },
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       if (this.valid) {
-        console.log(this.email, this.password);
-        this.$router.push("/");
+        try {
+          const payload = {
+            email: this.email,
+            password: this.password,
+          };
+
+          await this.$store.dispatch("login", payload);
+
+          this.$router.push("/");
+        } catch (e) {
+          console.error(e);
+        }
       }
     },
   },
