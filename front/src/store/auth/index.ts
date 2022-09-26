@@ -8,9 +8,16 @@ interface FormData {
 // TODO there is error with ts and vuex
 export default {
   actions: {
-    login: async (body: any, data: FormData) => {
+    login: async (actions: any, payload: FormData) => {
       // TODO create common axios method and instance
-      const response = await axios.get("/api/auth", { data });
+      interface ResultDTO {
+        fullname: string;
+        token: string;
+      }
+
+      const { data } = await axios.post<ResultDTO>("/api/auth/signIn", payload);
+
+      // TODO pass fullname and token to component
     },
   },
 };

@@ -2,10 +2,10 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/login",
-    name: "login",
+    path: "/signIn",
+    name: "signIn",
     meta: { layout: "empty" },
-    component: () => import("../pages/LoginPage.vue"),
+    component: () => import("../pages/SignInPage.vue"),
   },
   {
     path: "/signUp",
