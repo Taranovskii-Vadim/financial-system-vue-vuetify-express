@@ -1,6 +1,7 @@
-export interface Auth {
+export interface User {
+  readonly id: number;
   name: string;
-  surname: string;
+  surname?: string;
   email: string;
   password: string;
 }
