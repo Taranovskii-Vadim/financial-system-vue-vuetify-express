@@ -49,7 +49,7 @@ router.post("/signUp", async ({ body }: Request, res: Response) => {
     password,
   };
 
-  await FileModel.setData<User>("users", result);
+  await FileModel.setData<User[]>("users", [...users, result]);
 
   res.json({ token: getToken(result), fullname: getFullname(result) });
 });

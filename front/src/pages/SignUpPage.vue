@@ -46,10 +46,21 @@ export default defineComponent({
     passwordRules,
   }),
   methods: {
-    handleSubmit() {
+    async handleSubmit() {
       if (this.valid && this.agree) {
-        // console.log(this.email, this.password);
-        this.$router.push("/");
+        try {
+          const payload = {
+            email: this.email,
+            password: this.password,
+            name: this.name,
+          };
+
+          await this.$store.dispatch("register", payload);
+
+          this.$router.push("/");
+        } catch (e) {
+          console.error(e);
+        }
       }
     },
   },
