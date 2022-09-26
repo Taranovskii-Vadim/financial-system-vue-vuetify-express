@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError, AxiosResponse } from "axios";
 
 interface CommonData {
   email: string;
@@ -17,17 +17,31 @@ interface ResultDTO {
 // TODO there is error with ts and vuex
 export default {
   actions: {
-    login: async (actions: any, payload: FormData) => {
-      // TODO create common axios method and instance
+    login: async ({ commit }: any, payload: FormData) => {
+      try {
+        // TODO create common axios method and instance
 
-      const { data } = await axios.post<ResultDTO>("/api/auth/signIn", payload);
-
-      // TODO pass fullname and token to component
+        // TODO pass fullname and token to component
+        const { data } = await axios.post<ResultDTO>(
+          "/api/auth/signIn",
+          payload
+        );
+      } catch ({ response: { data } }) {
+        // TODO fix ts error
+        commit("setSnackbarText", data);
+      }
     },
-    register: async (actions: any, payload: SignUpData) => {
-      const { data } = await axios.post<ResultDTO>("/api/auth/signUp", payload);
+    register: async ({ commit }: any, payload: SignUpData) => {
+      try {
+        const { data } = await axios.post<ResultDTO>(
+          "/api/auth/signUp",
+          payload
+        );
 
-      console.log(data);
+        console.log(data);
+      } catch ({ response: { data } }) {
+        commit("setSnackbarText", data);
+      }
     },
   },
 };

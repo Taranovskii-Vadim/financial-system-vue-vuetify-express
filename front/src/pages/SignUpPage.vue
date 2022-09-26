@@ -48,19 +48,15 @@ export default defineComponent({
   methods: {
     async handleSubmit() {
       if (this.valid && this.agree) {
-        try {
-          const payload = {
-            email: this.email,
-            password: this.password,
-            name: this.name,
-          };
+        const payload = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+        };
 
-          await this.$store.dispatch("register", payload);
+        await this.$store.dispatch("register", payload);
 
-          this.$router.push("/");
-        } catch (e) {
-          console.error(e);
-        }
+        this.$router.push("/");
       }
     },
   },
