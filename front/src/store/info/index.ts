@@ -1,20 +1,6 @@
 import { ActionContext } from "vuex";
 import axios from "axios";
 
-interface CommonData {
-  email: string;
-  password: string;
-}
-
-interface SignUpData extends CommonData {
-  name: string;
-}
-
-interface ResultDTO {
-  id: number;
-  token: string;
-}
-
 export default {
   state: {},
   getters: {},
