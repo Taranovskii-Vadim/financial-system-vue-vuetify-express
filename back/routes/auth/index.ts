@@ -11,8 +11,6 @@ const router = Router();
 // TODO use env variables
 const getToken = (user: User) => jwt.sign(user, "AVACATO");
 
-const getFullname = (user: User) => `${user.surname || ""} ${user.name}`.trim();
-
 router.post("/signIn", async ({ body }: Request, res: Response) => {
   try {
     const { email, password } = body;
@@ -28,12 +26,12 @@ router.post("/signIn", async ({ body }: Request, res: Response) => {
       return res.status(401).json("Пароль неверный");
     }
 
-    res.json({ token: getToken(result), fullname: getFullname(result) });
+    res.json({ token: getToken(result) });
   } catch (e) {}
 });
 
 router.post("/signUp", async ({ body }: Request, res: Response) => {
-  const { email, password, name } = body;
+  const { email } = body;
 
   const users = await FileModel.getData<User[]>("users");
   const user = users.find((item) => item.email === email);
@@ -42,16 +40,11 @@ router.post("/signUp", async ({ body }: Request, res: Response) => {
     return res.json("Такой пользователь уже существует");
   }
 
-  const result: User = {
-    id: users.length + 1,
-    name,
-    email,
-    password,
-  };
+  const result: User = { id: users.length + 1, ...body };
 
   await FileModel.setData<User[]>("users", [...users, result]);
 
-  res.json({ token: getToken(result), fullname: getFullname(result) });
+  res.json({ token: getToken(result) });
 });
 
 export default router;

@@ -13,9 +13,6 @@ export default createStore({
     setSnackbarText(state, text) {
       state.snackbarText = text;
     },
-    resetSnackbarText(state) {
-      state.snackbarText = "";
-    },
   },
   actions: {},
   modules: { auth },
