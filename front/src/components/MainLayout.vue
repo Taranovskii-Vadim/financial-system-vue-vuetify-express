@@ -20,7 +20,7 @@
             ></v-btn>
           </template>
         </v-list-item>
-        <v-divider></v-divider>
+        <v-divider />
         <Navbar />
       </v-navigation-drawer>
       <v-main>
@@ -59,10 +59,12 @@ export default defineComponent({
       return instance.format(this.date);
     },
   },
-  mounted() {
+  async mounted() {
     this.interval = setInterval(() => {
       this.date = new Date();
     }, 1000);
+
+    const userInfo = await this.$store.dispatch("getInfo");
   },
   beforeUnmount() {
     clearInterval(this.interval);
