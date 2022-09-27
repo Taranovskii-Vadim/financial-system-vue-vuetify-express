@@ -19,6 +19,7 @@ interface ResultDTO {
 // TODO there is error with ts and vuex
 export default {
   state: {
+    // TODO error if reload page because we dont save user data in cookie or storage
     userInfo: null,
   },
   getters: {

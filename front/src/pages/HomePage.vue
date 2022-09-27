@@ -3,7 +3,8 @@
     <h2>Счет</h2>
     <v-btn icon="mdi-cached" color="primary" />
   </div>
-  <div class="flex">
+  <Loader v-if="isLoading" />
+  <div v-else class="flex">
     <v-card
       width="30%"
       height="400px"
@@ -30,6 +31,7 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HomePage",
+  data: () => ({ isLoading: true }),
 });
 </script>
 
