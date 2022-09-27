@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response, Router } from "express";
 
 import FileModel from "../../models/fileModel";
-import { User } from "./types";
+import { User } from "../types";
 
 const router = Router();
 
@@ -42,7 +42,7 @@ router.post("/signUp", async ({ body }: Request, res: Response) => {
 
   const id = users.length + 1;
 
-  const result: User = { id, ...body };
+  const result: User = { id, bill: 0, ...body };
 
   await FileModel.setData<User[]>("users", [...users, result]);
 

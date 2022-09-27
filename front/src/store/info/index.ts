@@ -9,6 +9,7 @@ export default {
     async getInfo({ rootState }: ActionContext<any, any>) {
       const userId = rootState.auth.currentUserId;
       const response = await axios.get(`/api/users/${userId}`);
+      console.log(response);
     },
   },
 };

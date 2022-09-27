@@ -1,1 +1,9 @@
-[{ "id": 1, "name": "Vadim", "email": "v@mail.ru", "password": "qwerty" }]
+[
+  {
+    "id": 1,
+    "name": "Vadim",
+    "email": "v@mail.ru",
+    "password": "qwerty",
+    "bill": 0
+  }
+]
