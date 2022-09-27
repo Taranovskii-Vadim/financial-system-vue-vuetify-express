@@ -9,7 +9,7 @@
       >
         <v-list-item
           nav
-          title="Вадим Тарановский"
+          :title="name"
           prepend-avatar="https://randomuser.me/api/portraits/men/86.jpg"
         >
           <template v-slot:append>
@@ -57,6 +57,9 @@ export default defineComponent({
       const instance = new Intl.DateTimeFormat("ru-RU", options);
 
       return instance.format(this.date);
+    },
+    name(): string {
+      return this.$store.getters.info.fullname;
     },
   },
   async mounted() {

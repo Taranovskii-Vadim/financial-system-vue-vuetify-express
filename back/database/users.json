@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "name": "Vadim",
+    "name": "Вадим",
+    "surname": "Тарановский",
     "email": "v@mail.ru",
     "password": "qwerty",
     "bill": 0

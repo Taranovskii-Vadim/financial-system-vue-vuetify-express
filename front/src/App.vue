@@ -14,7 +14,7 @@ export default defineComponent({
   name: "App",
   data: () => ({ snackbar: false, text: "" }),
   computed: {
-    snackbarText() {
+    snackbarText(): string {
       return this.$store.getters.snackbarText;
     },
     layout() {
