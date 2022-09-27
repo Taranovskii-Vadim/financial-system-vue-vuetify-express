@@ -24,8 +24,10 @@
         <Navbar />
       </v-navigation-drawer>
       <v-main>
-        <h4>{{ formattedDate }}</h4>
-        <router-view />
+        <div class="content">
+          <!-- <h4>{{ formattedDate }}</h4> -->
+          <router-view />
+        </div>
       </v-main>
     </v-layout>
   </v-card>
@@ -74,3 +76,9 @@ export default defineComponent({
   },
 });
 </script>
+
+<style scoped>
+.content {
+  padding: 12px 24px;
+}
+</style>
