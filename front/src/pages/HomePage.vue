@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 24px" class="flex">
     <h2>Счет</h2>
-    <button>Refresh</button>
+    <v-btn icon="mdi-cached" color="primary" />
   </div>
   <div class="flex">
     <v-card
