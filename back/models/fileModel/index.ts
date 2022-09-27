@@ -4,7 +4,7 @@ import path from "path";
 // TODO more correct way use Record<string, unknown>
 type Payload = object;
 
-type FileName = "users";
+type FileName = "users" | "currencies";
 
 const getFile = (name: FileName) =>
   path.resolve(__dirname, "..", "..", "database", `${name}.json`);

@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import authRouter from "./auth";
+import currenciesRouter from "./currencies";
 
 interface Route {
   prefix: string;
@@ -10,6 +11,7 @@ interface Route {
 
 const routes: Route[] = [
   { prefix: "/auth", router: authRouter, isAuth: false },
+  { prefix: "/currencies", router: currenciesRouter, isAuth: false },
 ];
 
 export default routes;
