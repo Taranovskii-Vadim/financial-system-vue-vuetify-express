@@ -9,7 +9,7 @@ router.get("/", async (req: Request, res: Response) => {
   try {
     const result = await FileModel.getData<Result>("currencies");
 
-    res.json({ result });
+    res.json(result);
   } catch (e) {}
 });
 

@@ -32,6 +32,14 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "HomePage",
   data: () => ({ isLoading: true }),
+  async mounted() {
+    try {
+      await this.$store.dispatch("getCurrencies");
+      this.isLoading = false;
+    } catch (e) {
+      console.log(e);
+    }
+  },
 });
 </script>
 
