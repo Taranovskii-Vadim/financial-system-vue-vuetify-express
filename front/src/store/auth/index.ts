@@ -11,21 +11,22 @@ interface SignUpData extends CommonData {
 }
 
 interface ResultDTO {
-  id: number;
+  bill: number;
   token: string;
+  fullname: string;
 }
 
 // TODO there is error with ts and vuex
 export default {
   state: {
-    currentUserId: null,
+    userInfo: null,
   },
   getters: {
-    currentUserId: (state: any) => state.currentUserId,
+    userInfo: (state: any) => state.userInfo,
   },
   mutations: {
-    setCurrentUserId(state: any, id: number) {
-      state.currentUserId = id;
+    setUserInfo(state: any, userInfoDTO: ResultDTO) {
+      state.userInfo = userInfoDTO;
     },
   },
   actions: {
@@ -39,7 +40,7 @@ export default {
           payload
         );
 
-        commit("setCurrentUserId", data.id);
+        commit("setUserInfo", data);
       } catch ({ response: { data } }) {
         // TODO fix ts error
         commit("setSnackbarText", data);
@@ -55,7 +56,7 @@ export default {
           payload
         );
 
-        commit("setCurrentUserId", data.id);
+        commit("setUserInfo", data);
       } catch ({ response: { data } }) {
         commit("setSnackbarText", data);
       }

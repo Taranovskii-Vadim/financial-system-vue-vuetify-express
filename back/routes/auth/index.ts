@@ -26,7 +26,9 @@ router.post("/signIn", async ({ body }: Request, res: Response) => {
       return res.status(401).json("Пароль неверный");
     }
 
-    res.json({ id: result.id, token: getToken(result) });
+    const fullname = `${result.surname || ""} ${result.name}`.trim();
+
+    res.json({ fullname, bill: result.bill, token: getToken(result) });
   } catch (e) {}
 });
 
@@ -40,13 +42,13 @@ router.post("/signUp", async ({ body }: Request, res: Response) => {
     return res.json("Такой пользователь уже существует");
   }
 
-  const id = users.length + 1;
-
-  const result: User = { id, bill: 0, ...body };
+  const result: User = { id: users.length + 1, bill: 0, ...body };
 
   await FileModel.setData<User[]>("users", [...users, result]);
 
-  res.json({ id, token: getToken(result) });
+  const fullname = `${result.surname || ""} ${result.name}`.trim();
+
+  res.json({ fullname, bill: result.bill, token: getToken(result) });
 });
 
 export default router;

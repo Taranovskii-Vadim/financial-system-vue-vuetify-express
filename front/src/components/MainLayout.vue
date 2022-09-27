@@ -61,15 +61,13 @@ export default defineComponent({
       return instance.format(this.date);
     },
     name(): string {
-      return this.$store.getters.info.fullname;
+      return this.$store.getters.userInfo.fullname;
     },
   },
   async mounted() {
     this.interval = setInterval(() => {
       this.date = new Date();
     }, 1000);
-
-    const userInfo = await this.$store.dispatch("getInfo");
   },
   beforeUnmount() {
     clearInterval(this.interval);
