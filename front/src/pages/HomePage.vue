@@ -1,7 +1,7 @@
 <template>
   <div style="margin-bottom: 24px" class="flex">
     <h2>Счет</h2>
-    <v-btn icon="mdi-cached" color="primary" />
+    <v-btn icon="mdi-cached" color="primary" @click="refreshData" />
   </div>
   <Loader v-if="isLoading" />
   <div v-else class="flex">
@@ -27,6 +27,14 @@ export default defineComponent({
     } catch (e) {
       console.log(e);
     }
+  },
+  methods: {
+    async refreshData() {
+      this.isLoading = true;
+      const curriencies = await this.$store.dispatch("getCurrencies");
+      this.curriencies = curriencies;
+      this.isLoading = false;
+    },
   },
 });
 </script>
