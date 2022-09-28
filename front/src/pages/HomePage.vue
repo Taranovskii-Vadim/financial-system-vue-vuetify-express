@@ -12,7 +12,9 @@
       variant="outlined"
     >
       <template v-slot:title>Счет в валюте</template>
-      <v-card-text> This is content </v-card-text>
+      <v-card-text v-for="{ currency, value } in curriencyBill" :key="currency">
+        {{ value }}
+      </v-card-text>
     </v-card>
     <v-card
       width="65%"
@@ -31,10 +33,27 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HomePage",
-  data: () => ({ isLoading: true }),
+  data: () => ({ isLoading: true, curriencies: null }),
+  computed: {
+    curriencyBill() {
+      const bill = this.$store.getters.userInfo.bill;
+      const common: Intl.NumberFormatOptions = { style: "currency" };
+
+      const result = Object.keys(this.curriencies).map((currency) => {
+        const num = bill / this.curriencies[currency];
+
+        const value = new Intl.NumberFormat("ru-RU", { ...common, currency });
+
+        return { currency, value: value.format(num) };
+      });
+
+      return result;
+    },
+  },
   async mounted() {
     try {
-      await this.$store.dispatch("getCurrencies");
+      const curriencies = await this.$store.dispatch("getCurrencies");
+      this.curriencies = curriencies;
       this.isLoading = false;
     } catch (e) {
       console.log(e);
