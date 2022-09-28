@@ -6,10 +6,11 @@
     <v-form style="width: 650px" v-model="valid" @submit.prevent="handleSubmit">
       <v-text-field
         width="100%"
-        v-model="title"
+        v-model="name"
         label="Наименование"
       ></v-text-field>
       <v-text-field width="100%" v-model="limit" label="Лимит"></v-text-field>
+      <div>{{ categories }}</div>
       <v-btn block color="primary" type="submit">Создать</v-btn>
     </v-form>
   </div>
@@ -23,13 +24,15 @@ export default defineComponent({
   data: () => ({
     categories: [],
     valid: false,
-    title: "",
+    name: "",
     limit: 100,
   }),
   methods: {
     async handleSubmit() {
-      if (this.title && this.limit) {
-        console.log(this.title, this.limit);
+      if (this.name && this.limit) {
+        const payload = { name: this.name, limit: this.limit };
+        const id = await this.$store.dispatch("createCategory", payload);
+        this.categories.push({ id, ...payload });
       }
     },
   },

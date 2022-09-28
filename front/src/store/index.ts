@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 import auth from "./auth";
 import currencies from "./currencies";
+import categories from "./categories";
 
 export interface RootStore {
   snackbarText: string;
@@ -20,5 +21,5 @@ export default createStore<RootStore>({
     },
   },
   actions: {},
-  modules: { auth, currencies },
+  modules: { auth, currencies, categories },
 });
