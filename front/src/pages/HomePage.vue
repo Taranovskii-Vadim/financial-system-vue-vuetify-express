@@ -13,7 +13,24 @@
       variant="outlined"
     >
       <template v-slot:title>Курс валют</template>
-      <v-card-text> This is content </v-card-text>
+      <v-card-text>
+        <v-table>
+          <thead>
+            <tr>
+              <th class="text-left">Валюта</th>
+              <th class="text-left">Курс</th>
+              <th class="text-left">Дата</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="{} in curriencies" :key="item.name">
+              <td>{{ item.name }}</td>
+              <td>{{ item.calories }}</td>
+              <td>{{ item.calories }}</td>
+            </tr>
+          </tbody>
+        </v-table>
+      </v-card-text>
     </v-card>
   </div>
 </template>

@@ -18,12 +18,10 @@ export default defineComponent({
       const bill = this.$store.getters.userInfo.bill;
       const common: Intl.NumberFormatOptions = { style: "currency" };
 
-      const result = Object.keys(this.data).map((currency) => {
-        const num = bill / this.data[currency];
-
+      const result = this.data.map(({ key: currency, rate }) => {
         const value = new Intl.NumberFormat("ru-RU", { ...common, currency });
 
-        return { currency, value: value.format(num) };
+        return { currency, value: value.format(bill / rate) };
       });
 
       return result;

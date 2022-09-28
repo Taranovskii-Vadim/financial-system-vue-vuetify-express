@@ -3,13 +3,16 @@ import FileModel from "../../models/fileModel";
 
 const router = Router();
 
-type Result = Record<string, number>;
+interface Result {
+  key: string;
+  rate: number;
+}
 
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const result = await FileModel.getData<Result>("currencies");
+    const result = await FileModel.getData<Result[]>("currencies");
 
-    res.json(result);
+    res.json(result.map((item) => ({ ...item, date: new Date() })));
   } catch (e) {}
 });
 
