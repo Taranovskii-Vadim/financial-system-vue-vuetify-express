@@ -1,8 +1,4 @@
-import { Request } from "express";
-
 import { TokenUser } from "../../types";
-
-export type R<T> = Request<any, any, T>;
 
 export type User = TokenUser & {
   readonly id: number;
@@ -11,6 +7,6 @@ export type User = TokenUser & {
   password: string;
 };
 
-export type CommonPayload = { email: string; password: string };
+export type CommonDTO = { email: string; password: string };
 
-export type SignUpPayload = CommonPayload & { name: string };
+export type SignUpDTO = CommonDTO & { name: string };

@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import { Response, Router } from "express";
 
 import FileModel from "../../models/fileModel";
-import { TokenUser } from "../../types";
-import { R, CommonPayload, SignUpPayload, User } from "./types";
+import { TokenUser, Request } from "../../types";
+import { CommonDTO, SignUpDTO, User } from "./types";
 
 const router = Router();
 
@@ -11,7 +11,7 @@ const router = Router();
 
 const getToken = (data: TokenUser) => jwt.sign(data, process.env.JWT_KEY);
 
-router.post("/signIn", async ({ body }: R<CommonPayload>, res: Response) => {
+router.post("/signIn", async ({ body }: Request<CommonDTO>, res: Response) => {
   try {
     const { email, password } = body;
     const response = await FileModel.getData<User[]>("users");
@@ -36,7 +36,7 @@ router.post("/signIn", async ({ body }: R<CommonPayload>, res: Response) => {
   } catch (e) {}
 });
 
-router.post("/signUp", async ({ body }: R<SignUpPayload>, res: Response) => {
+router.post("/signUp", async ({ body }: Request<SignUpDTO>, res: Response) => {
   const bill = 0;
   const { email, name, password } = body;
 

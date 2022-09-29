@@ -1,16 +1,14 @@
-import { Request, Response, Router } from "express";
+import { Response, Router } from "express";
 import FileModel from "../../models/fileModel";
+
+import { Request } from "../../types";
+import { Currency } from "./types";
 
 const router = Router();
 
-interface Result {
-  key: string;
-  rate: number;
-}
-
 router.get("/", async (req: Request, res: Response) => {
   try {
-    const result = await FileModel.getData<Result[]>("currencies");
+    const result = await FileModel.getData<Currency[]>("currencies");
 
     res.json(result.map((item) => ({ ...item, date: new Date() })));
   } catch (e) {}

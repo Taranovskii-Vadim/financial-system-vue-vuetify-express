@@ -1,10 +1,10 @@
-import { Request as ExpressRequest } from "express";
+import { Request as R } from "express";
 
 export type TokenUser = {
   name: string;
   email: string;
 };
 
-export interface Request extends ExpressRequest {
+export interface Request<T = undefined> extends R<any, any, T> {
   user: TokenUser;
 }
