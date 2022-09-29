@@ -1,17 +1,17 @@
 import jwt from "jsonwebtoken";
-import { Request, Response, Router } from "express";
+import { Response, Router } from "express";
 
 import FileModel from "../../models/fileModel";
-import { User } from "../types";
+import { TokenUser } from "../../types";
+import { R, CommonPayload, SignUpPayload, User } from "./types";
 
 const router = Router();
 
 // TODO connect express validator
 
-// TODO use env variables
-const getToken = (user: User) => jwt.sign(user, "AVACATO");
+const getToken = (data: TokenUser) => jwt.sign(data, process.env.JWT_KEY);
 
-router.post("/signIn", async ({ body }: Request, res: Response) => {
+router.post("/signIn", async ({ body }: R<CommonPayload>, res: Response) => {
   try {
     const { email, password } = body;
     const response = await FileModel.getData<User[]>("users");
@@ -26,14 +26,19 @@ router.post("/signIn", async ({ body }: Request, res: Response) => {
       return res.status(401).json("Пароль неверный");
     }
 
-    const fullname = `${result.surname || ""} ${result.name}`.trim();
+    const { surname, name, bill } = result;
 
-    res.json({ fullname, bill: result.bill, token: getToken(result) });
+    const fullname = `${surname || ""} ${name}`.trim();
+
+    res.cookie(process.env.TOKEN_KEY, getToken({ name, email }));
+
+    res.json({ bill, fullname });
   } catch (e) {}
 });
 
-router.post("/signUp", async ({ body }: Request, res: Response) => {
-  const { email } = body;
+router.post("/signUp", async ({ body }: R<SignUpPayload>, res: Response) => {
+  const bill = 0;
+  const { email, name, password } = body;
 
   const users = await FileModel.getData<User[]>("users");
   const user = users.find((item) => item.email === email);
@@ -42,13 +47,14 @@ router.post("/signUp", async ({ body }: Request, res: Response) => {
     return res.json("Такой пользователь уже существует");
   }
 
-  const result: User = { id: users.length + 1, bill: 0, ...body };
+  // TODO hash password
+  const result: User = { id: users.length + 1, bill, email, name, password };
 
   await FileModel.setData<User[]>("users", [...users, result]);
 
-  const fullname = `${result.surname || ""} ${result.name}`.trim();
+  res.cookie(process.env.TOKEN_KEY, getToken({ name, email }));
 
-  res.json({ fullname, bill: result.bill, token: getToken(result) });
+  res.json({ fullname: name, bill });
 });
 
 export default router;

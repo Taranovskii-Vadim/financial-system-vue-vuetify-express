@@ -1,6 +1,10 @@
 import express, { json } from "express";
+import { config } from "dotenv";
+
+config();
 
 import routes from "./routes";
+import { auhtMiddleware } from "./middlewares";
 
 const server = express();
 
@@ -10,8 +14,11 @@ server.use(json());
 
 routes.forEach(({ prefix, router, isAuth = true }) => {
   const completedPrefix = `/api${prefix}`;
-  // TODO add middleware
-  server.use(completedPrefix, router);
+  if (isAuth) {
+    server.use(completedPrefix, auhtMiddleware, router);
+  } else {
+    server.use(completedPrefix, router);
+  }
 });
 
 (() => {

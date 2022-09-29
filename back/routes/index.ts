@@ -12,8 +12,8 @@ interface Route {
 
 const routes: Route[] = [
   { prefix: "/auth", router: authRouter, isAuth: false },
-  { prefix: "/currencies", router: currenciesRouter, isAuth: false },
-  { prefix: "/categories", router: categoriesRouter, isAuth: false },
+  { prefix: "/currencies", router: currenciesRouter },
+  { prefix: "/categories", router: categoriesRouter },
 ];
 
 export default routes;
