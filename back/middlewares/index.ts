@@ -1,9 +1,18 @@
 import jwt from "jsonwebtoken";
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Response } from "express";
 
-export const auhtMiddleware = (req: Request, r, next: NextFunction) => {
-  // TODO get cookie and parse it to verify user token
-  //   const token = req.headers.token as string;
-  //   const decoded = jwt.verify(token, process.env.JWT_KEY);
-  next();
+import { Request } from "../types";
+
+export const auhtMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  const { token } = req.cookies as { token: string };
+  const decoded = jwt.verify(token, process.env.JWT_KEY) as Request["user"];
+
+  if (decoded) {
+    req.user = decoded;
+    next();
+  }
 };

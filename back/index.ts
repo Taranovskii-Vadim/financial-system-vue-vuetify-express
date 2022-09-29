@@ -1,4 +1,5 @@
 import express, { json } from "express";
+import cookieParser from "cookie-parser";
 import { config } from "dotenv";
 
 config();
@@ -10,6 +11,7 @@ const server = express();
 
 const PORT = 3000;
 
+server.use(cookieParser());
 server.use(json());
 
 routes.forEach(({ prefix, router, isAuth = true }) => {
