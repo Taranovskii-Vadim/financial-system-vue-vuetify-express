@@ -1,6 +1,9 @@
 import axios from "axios";
 import { ActionContext } from "vuex";
 
+import { api } from "@/api";
+import postAuth from "@/api/postAuth";
+
 interface CommonData {
   email: string;
   password: string;
@@ -32,15 +35,9 @@ export default {
   actions: {
     login: async ({ commit }: ActionContext<any, any>, payload: FormData) => {
       try {
-        // TODO create common axios method and instance
+        const result: any = await api(postAuth, payload, "signIn");
 
-        // TODO pass fullname and token to component
-        const { data } = await axios.post<ResultDTO>(
-          "/api/auth/signIn",
-          payload
-        );
-
-        commit("setUserInfo", data);
+        commit("setUserInfo", result);
       } catch ({ response: { data } }) {
         // TODO fix ts error
         commit("setSnackbarText", data);
@@ -51,12 +48,9 @@ export default {
       payload: SignUpData
     ) => {
       try {
-        const { data } = await axios.post<ResultDTO>(
-          "/api/auth/signUp",
-          payload
-        );
+        const result: any = await api(postAuth, payload, "signUp");
 
-        commit("setUserInfo", data);
+        commit("setUserInfo", result);
       } catch ({ response: { data } }) {
         commit("setSnackbarText", data);
       }

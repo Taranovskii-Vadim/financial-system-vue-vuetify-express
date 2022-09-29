@@ -1,14 +1,15 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-import { Route, Payload, Query, ApiData, ApiResult } from "./types";
+import { Route, ApiData, ApiResult } from "./types";
 
 const instance = axios.create({ baseURL: "/api" });
 
 export const api = async <R extends Route>(
-  { method, getUrl, ...route }: R,
-  payload?: Payload,
-  query?: Query
+  route: R,
+  payload?: any,
+  query?: any
 ): ApiResult => {
+  const { method, getUrl } = route;
   let config: AxiosRequestConfig = { method, url: getUrl(query) };
 
   if (payload) {
