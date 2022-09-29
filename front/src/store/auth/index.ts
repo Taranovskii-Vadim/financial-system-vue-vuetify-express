@@ -12,7 +12,6 @@ interface SignUpData extends CommonData {
 
 interface ResultDTO {
   bill: number;
-  token: string;
   fullname: string;
 }
 
