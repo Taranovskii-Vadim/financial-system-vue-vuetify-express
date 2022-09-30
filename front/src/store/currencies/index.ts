@@ -1,10 +1,12 @@
-import axios from "axios";
+import { api } from "@/api";
+import getCurrencies from "@/api/getCurrencies";
 
 export default {
   actions: {
     getCurrencies: async () => {
-      const { data } = await axios.get("/api/currencies");
-      return data;
+      const result = await api(getCurrencies);
+
+      return result;
     },
   },
 };
