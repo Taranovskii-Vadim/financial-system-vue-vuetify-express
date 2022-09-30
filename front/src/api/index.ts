@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-import { Route, ApiData, ApiResult } from "./types";
+import { Route, ApiData } from "./types";
 
 const instance = axios.create({ baseURL: "/api" });
 
@@ -8,7 +8,7 @@ export const api = async <R extends Route>(
   route: R,
   payload?: any,
   query?: any
-): ApiResult => {
+): Promise<any> => {
   const { method, getUrl } = route;
   let config: AxiosRequestConfig = { method, url: getUrl(query) };
 

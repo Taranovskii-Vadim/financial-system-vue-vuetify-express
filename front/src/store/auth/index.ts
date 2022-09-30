@@ -1,22 +1,11 @@
-import axios from "axios";
 import { ActionContext } from "vuex";
 
 import { api } from "@/api";
 import postAuth from "@/api/postAuth";
 
-interface CommonData {
-  email: string;
-  password: string;
-}
+import { CommonData, SignUpData, UserInfo } from "./types";
 
-interface SignUpData extends CommonData {
-  name: string;
-}
-
-interface ResultDTO {
-  bill: number;
-  fullname: string;
-}
+type Context = ActionContext<any, any>;
 
 // TODO there is error with ts and vuex
 export default {
@@ -28,31 +17,27 @@ export default {
     userInfo: (state: any) => state.userInfo,
   },
   mutations: {
-    setUserInfo(state: any, userInfoDTO: ResultDTO) {
-      state.userInfo = userInfoDTO;
+    setUserInfo(state: any, payload: UserInfo) {
+      state.userInfo = payload;
     },
   },
   actions: {
-    login: async ({ commit }: ActionContext<any, any>, payload: FormData) => {
+    login: async ({ commit }: Context, payload: CommonData) => {
       try {
-        const result: any = await api(postAuth, payload, "signIn");
+        const result: UserInfo = await api(postAuth, payload, "signIn");
 
         commit("setUserInfo", result);
-      } catch ({ response: { data } }) {
-        // TODO fix ts error
-        commit("setSnackbarText", data);
+      } catch (e) {
+        commit("setSnackbarText", e);
       }
     },
-    register: async (
-      { commit }: ActionContext<any, any>,
-      payload: SignUpData
-    ) => {
+    register: async ({ commit }: Context, payload: SignUpData) => {
       try {
-        const result: any = await api(postAuth, payload, "signUp");
+        const result: UserInfo = await api(postAuth, payload, "signUp");
 
         commit("setUserInfo", result);
-      } catch ({ response: { data } }) {
-        commit("setSnackbarText", data);
+      } catch (e) {
+        commit("setSnackbarText", e);
       }
     },
   },
