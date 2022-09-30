@@ -4,11 +4,9 @@ import auth from "./auth";
 import currencies from "./currencies";
 import categories from "./categories";
 
-export interface RootStore {
+export default createStore<{
   snackbarText: string;
-}
-
-export default createStore<RootStore>({
+}>({
   state: {
     snackbarText: "",
   },
