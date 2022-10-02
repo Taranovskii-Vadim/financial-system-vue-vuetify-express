@@ -43,7 +43,7 @@ router.put(
 
       await FileModel.setData("categories", previous);
 
-      res.status(201);
+      res.json(category);
     } catch (e) {
       console.log(e);
     }

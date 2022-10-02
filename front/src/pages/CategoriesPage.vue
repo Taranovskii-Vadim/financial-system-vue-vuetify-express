@@ -26,7 +26,6 @@ export default defineComponent({
     },
     async updateCategory(payload) {
       await this.$store.dispatch("updateCategory", payload);
-      console.log(payload);
     },
   },
 });
