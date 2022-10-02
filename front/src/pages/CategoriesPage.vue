@@ -19,6 +19,10 @@ export default defineComponent({
   data: () => ({
     categories: [],
   }),
+  async mounted() {
+    const result = await this.$store.dispatch("getCategories");
+    this.categories = result;
+  },
   methods: {
     async createCategory(payload) {
       const id = await this.$store.dispatch("createCategory", payload);

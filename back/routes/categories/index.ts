@@ -6,6 +6,16 @@ import { CommonDTO, Category } from "./types";
 
 const router = Router();
 
+router.get("/", async (req: Request, res: Response) => {
+  try {
+    const result = await FileModel.getData<Category[]>("categories");
+
+    res.json(result);
+  } catch (e) {
+    console.log(e);
+  }
+});
+
 router.post("/", async ({ body }: Request<CommonDTO>, res: Response) => {
   try {
     const { name, limit } = body;

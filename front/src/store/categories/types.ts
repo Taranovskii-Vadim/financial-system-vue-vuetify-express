@@ -1,4 +1,8 @@
-export interface FormPayload {
+export interface CommonData {
   name: string;
-  payload: string;
+  limit: number;
+}
+
+export interface Category extends CommonData {
+  readonly id: number;
 }
