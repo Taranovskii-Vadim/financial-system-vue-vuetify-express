@@ -1,7 +1,7 @@
 import { Router, Response } from "express";
 
 import FileModel from "../../models/fileModel";
-import { Request } from "../../types";
+import { Request, RequestWithID } from "../../types";
 import { CommonDTO, Category } from "./types";
 
 const router = Router();
@@ -22,5 +22,32 @@ router.post("/", async ({ body }: Request<CommonDTO>, res: Response) => {
     console.log(e);
   }
 });
+
+router.put(
+  "/:id",
+  async ({ body, params }: RequestWithID<CommonDTO>, res: Response) => {
+    try {
+      const { id } = params;
+      const { name, limit } = body;
+
+      const previous = await FileModel.getData<Category[]>("categories");
+
+      const category = previous.find((item) => item.id === parseInt(id, 10));
+
+      if (!category) {
+        return res.status(404).json("Категория не найдена");
+      }
+
+      category.name = name;
+      category.limit = parseInt(limit, 10);
+
+      await FileModel.setData("categories", previous);
+
+      res.status(201);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+);
 
 export default router;

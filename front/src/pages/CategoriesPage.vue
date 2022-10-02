@@ -25,6 +25,7 @@ export default defineComponent({
       this.categories.push({ id, ...payload });
     },
     async updateCategory(payload) {
+      await this.$store.dispatch("updateCategory", payload);
       console.log(payload);
     },
   },

@@ -7,7 +7,6 @@
       item-value="id"
       label="Категория"
     />
-    <div>{{ data }}</div>
     <v-text-field
       width="100%"
       v-model="name"
