@@ -1,8 +1,8 @@
 import { Request as R } from "express";
 
 export type TokenUser = {
-  name: string;
-  email: string;
+  fullname: string;
+  bill: number;
 };
 
 export interface Request<T = undefined> extends R<any, any, T> {

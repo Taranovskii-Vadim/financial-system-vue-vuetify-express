@@ -2,6 +2,7 @@ import { ActionContext } from "vuex";
 
 import { api } from "@/api";
 import postAuth from "@/api/postAuth";
+import getProfile from "@/api/getProfile";
 
 import { CommonData, SignUpData, UserInfo } from "./types";
 
@@ -11,7 +12,7 @@ type Context = ActionContext<any, any>;
 export default {
   state: {
     // TODO error if reload page because we dont save user data in cookie or storage
-    userInfo: null,
+    userInfo: { fullname: "", bill: 0 },
   },
   getters: {
     userInfo: (state: any) => state.userInfo,
@@ -22,20 +23,25 @@ export default {
     },
   },
   actions: {
-    login: async ({ commit }: Context, payload: CommonData) => {
+    fetchUserInfo: async ({ commit }: Context) => {
       try {
-        const result: UserInfo = await api(postAuth, payload, "signIn");
+        const result: UserInfo = await api(getProfile);
 
         commit("setUserInfo", result);
+      } catch (e) {
+        console.log(e);
+      }
+    },
+    login: async ({ commit }: Context, payload: CommonData) => {
+      try {
+        await api(postAuth, payload, "signIn");
       } catch (e) {
         commit("setSnackbarText", e);
       }
     },
     register: async ({ commit }: Context, payload: SignUpData) => {
       try {
-        const result: UserInfo = await api(postAuth, payload, "signUp");
-
-        commit("setUserInfo", result);
+        await api(postAuth, payload, "signUp");
       } catch (e) {
         commit("setSnackbarText", e);
       }

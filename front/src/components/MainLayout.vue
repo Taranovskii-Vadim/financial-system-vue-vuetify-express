@@ -65,6 +65,7 @@ export default defineComponent({
     },
   },
   async mounted() {
+    this.$store.dispatch("fetchUserInfo");
     this.interval = setInterval(() => {
       this.date = new Date();
     }, 1000);

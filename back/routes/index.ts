@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import authRouter from "./auth";
+import profileRouter from "./profile";
 import currenciesRouter from "./currencies";
 import categoriesRouter from "./categories";
 
@@ -14,6 +15,7 @@ const routes: Route[] = [
   { prefix: "/auth", router: authRouter, isAuth: false },
   { prefix: "/currencies", router: currenciesRouter },
   { prefix: "/categories", router: categoriesRouter },
+  { prefix: "/profile", router: profileRouter },
 ];
 
 export default routes;

@@ -26,13 +26,13 @@ router.post("/signIn", async ({ body }: Request<CommonDTO>, res: Response) => {
       return res.status(401).json("Пароль неверный");
     }
 
-    const { surname, name, bill } = result;
+    const { name, surname, bill } = result;
 
     const fullname = `${surname || ""} ${name}`.trim();
 
-    res.cookie(process.env.TOKEN_KEY, getToken({ name, email }));
+    res.cookie(process.env.TOKEN_KEY, getToken({ fullname, bill }));
 
-    res.json({ bill, fullname });
+    res.json();
   } catch (e) {}
 });
 
@@ -52,9 +52,9 @@ router.post("/signUp", async ({ body }: Request<SignUpDTO>, res: Response) => {
 
   await FileModel.setData<User[]>("users", [...users, result]);
 
-  res.cookie(process.env.TOKEN_KEY, getToken({ name, email }));
+  res.cookie(process.env.TOKEN_KEY, getToken({ fullname: name, bill }));
 
-  res.json({ fullname: name, bill });
+  res.json();
 });
 
 export default router;

@@ -1,9 +1,9 @@
-import { TokenUser } from "../../types";
-
-export type User = TokenUser & {
+export type User = {
   readonly id: number;
+  bill: number;
+  name: string;
+  email: string;
   surname?: string;
-  bill?: number;
   password: string;
 };
 
