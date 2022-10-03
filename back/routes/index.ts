@@ -4,7 +4,7 @@ import authRouter from "./auth";
 import profileRouter from "./profile";
 import currenciesRouter from "./currencies";
 import categoriesRouter from "./categories";
-import recordsRouter from "./record";
+import recordsRouter from "./records";
 
 interface Route {
   prefix: string;
