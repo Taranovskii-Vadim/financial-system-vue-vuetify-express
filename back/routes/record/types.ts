@@ -1,10 +1,12 @@
 export interface FormPayload {
   categoryId: number;
-  type: "income" | "outcome";
-  amount: number;
+  amount: string;
   description: string;
 }
 
-export interface Record extends FormPayload {
+export interface Record {
   readonly id: number;
+  categoryId: number;
+  amount: number;
+  description: string;
 }

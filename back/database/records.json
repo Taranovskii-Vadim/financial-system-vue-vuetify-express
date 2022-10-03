@@ -1,16 +1,8 @@
 [
   {
     "id": 1,
-    "type": "income",
-    "amount": "123",
+    "amount": 6000,
     "categoryId": 1,
-    "description": "asd"
-  },
-  {
-    "id": 2,
-    "type": "income",
-    "amount": "123",
-    "categoryId": 1,
-    "description": ""
+    "description": "Купил процессор intel core i3 10100F"
   }
 ]

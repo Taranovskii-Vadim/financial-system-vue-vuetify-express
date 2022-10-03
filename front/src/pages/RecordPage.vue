@@ -10,10 +10,6 @@
       item-value="id"
       label="Категория"
     />
-    <v-radio-group inline v-model="type">
-      <v-radio label="Доход" value="income" />
-      <v-radio label="Расход" value="outcome" />
-    </v-radio-group>
     <v-text-field width="100%" v-model="amount" label="Сумма"></v-text-field>
     <v-text-field
       width="100%"
@@ -31,7 +27,6 @@ export default defineComponent({
   name: "categoriesPage",
   data: () => ({
     categories: [],
-    type: "income",
     categoryId: null,
     amount: null,
     description: "",
@@ -43,9 +38,8 @@ export default defineComponent({
   methods: {
     async handleSubmit() {
       try {
-        if (this.amount && this.categoryId && this.type) {
+        if (this.amount && this.categoryId) {
           const payload = {
-            type: this.type,
             amount: this.amount,
             categoryId: this.categoryId,
             description: this.description,
