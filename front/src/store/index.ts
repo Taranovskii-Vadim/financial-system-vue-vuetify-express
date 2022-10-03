@@ -3,6 +3,7 @@ import { createStore } from "vuex";
 import auth from "./auth";
 import currencies from "./currencies";
 import categories from "./categories";
+import records from "./records";
 
 export default createStore<{
   snackbarText: string;
@@ -19,5 +20,5 @@ export default createStore<{
     },
   },
   actions: {},
-  modules: { auth, currencies, categories },
+  modules: { auth, currencies, categories, records },
 });
