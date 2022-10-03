@@ -4,6 +4,7 @@ import authRouter from "./auth";
 import profileRouter from "./profile";
 import currenciesRouter from "./currencies";
 import categoriesRouter from "./categories";
+import recordsRouter from "./record";
 
 interface Route {
   prefix: string;
@@ -16,6 +17,7 @@ const routes: Route[] = [
   { prefix: "/currencies", router: currenciesRouter },
   { prefix: "/categories", router: categoriesRouter },
   { prefix: "/profile", router: profileRouter },
+  { prefix: "/records", router: recordsRouter },
 ];
 
 export default routes;

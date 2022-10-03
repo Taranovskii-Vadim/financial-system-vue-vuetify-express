@@ -4,7 +4,7 @@
   </div>
   <v-form style="width: 650px" v-model="valid" @submit.prevent="handleSubmit">
     <v-select
-      v-model="select"
+      v-model="categoryId"
       :items="categories"
       item-title="name"
       item-value="id"
@@ -32,7 +32,7 @@ export default defineComponent({
   data: () => ({
     categories: [],
     type: "income",
-    select: null,
+    categoryId: null,
     amount: null,
     description: "",
   }),
@@ -43,11 +43,11 @@ export default defineComponent({
   methods: {
     async handleSubmit() {
       try {
-        if (this.amount && this.select && this.type) {
+        if (this.amount && this.categoryId && this.type) {
           const payload = {
             type: this.type,
             amount: this.amount,
-            select: this.select,
+            categoryId: this.categoryId,
             description: this.description,
           };
           this.$store.dispatch("createRecord", payload);

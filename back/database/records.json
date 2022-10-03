@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "type": "income",
+    "amount": "123",
+    "categoryId": 1,
+    "description": "asd"
+  },
+  {
+    "id": 2,
+    "type": "income",
+    "amount": "123",
+    "categoryId": 1,
+    "description": ""
+  }
+]
