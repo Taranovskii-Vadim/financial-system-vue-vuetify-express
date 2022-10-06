@@ -28,7 +28,7 @@ export default defineComponent({
     const records = await this.$store.dispatch("getRecords");
 
     const result = categories.map(({ id, name, limit }) => {
-      const filtered = records.filter((item) => item.categoryId === id);
+      const filtered = records.filter((item) => item.category.id === id);
 
       const wasted = filtered.reduce((acc, { amount }) => acc + amount, 0);
 

@@ -1,1 +1,15 @@
-[{"id":1,"amount":6000,"categoryId":1,"description":"Купил процессор intel core i3 10100F"},{"id":2,"amount":20000,"categoryId":1,"description":"Купил видеокарту"},{"id":3,"amount":100,"categoryId":2,"description":"Купил киндер"}]
+[
+  {
+    "id": 1,
+    "amount": 6000,
+    "categoryId": 1,
+    "description": "Купил процессор intel core i3 10100F"
+  },
+  {
+    "id": 2,
+    "amount": 20000,
+    "categoryId": 1,
+    "description": "Купил видеокарту"
+  },
+  { "id": 3, "amount": 100, "categoryId": 2, "description": "Купил киндер" }
+]

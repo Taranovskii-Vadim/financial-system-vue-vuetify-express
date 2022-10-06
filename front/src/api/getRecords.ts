@@ -3,7 +3,7 @@ import { Method, Route } from "./types";
 interface ResultDTO {
   id: number;
   amount: number;
-  categoryId: number;
+  category: { id: number; name: string };
   description: string;
 }
 

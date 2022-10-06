@@ -44,12 +44,6 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import("../pages/PlanningPage.vue"),
   },
   {
-    path: "/detail",
-    name: "detail",
-    meta: { layout: "main", auth: true },
-    component: () => import("../pages/DetailPage.vue"),
-  },
-  {
     path: "/history",
     name: "history",
     meta: { layout: "main", auth: true },
