@@ -11,7 +11,6 @@ type Context = ActionContext<any, any>;
 // TODO there is error with ts and vuex
 export default {
   state: {
-    // TODO error if reload page because we dont save user data in cookie or storage
     userInfo: { fullname: "", bill: 0 },
   },
   getters: {
@@ -29,7 +28,7 @@ export default {
 
         commit("setUserInfo", result);
       } catch (e) {
-        console.log(e);
+        commit("setSnackbarText", e);
       }
     },
     login: async ({ commit }: Context, payload: CommonData) => {

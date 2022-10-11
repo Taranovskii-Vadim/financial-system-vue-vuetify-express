@@ -1,13 +1,15 @@
 import { createStore } from "vuex";
 
 import auth from "./auth";
+import records from "./records";
 import currencies from "./currencies";
 import categories from "./categories";
-import records from "./records";
 
-export default createStore<{
+interface RootStore {
   snackbarText: string;
-}>({
+}
+
+export default createStore<RootStore>({
   state: {
     snackbarText: "",
   },
@@ -19,6 +21,5 @@ export default createStore<{
       state.snackbarText = text;
     },
   },
-  actions: {},
   modules: { auth, currencies, categories, records },
 });
