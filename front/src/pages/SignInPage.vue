@@ -8,6 +8,12 @@
       :rules="passwordRules"
     />
     <v-btn block color="primary" type="submit">Войти</v-btn>
+    <p style="margin-top: 10px">
+      Нет аккаунта?
+      <router-link style="color: blue; text-decoration: underline" to="/signUp"
+        >Зарегистрироваться</router-link
+      >
+    </p>
   </v-form>
 </template>
 

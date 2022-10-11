@@ -10,6 +10,12 @@
     <v-text-field label="Имя" v-model="name" :rules="nameRules" />
     <v-checkbox v-model="agree" label="Согласен с правилами" />
     <v-btn block :disabled="!agree" color="primary" type="submit">Войти</v-btn>
+    <p style="margin-top: 10px">
+      Есть аккаунт?
+      <router-link style="color: blue; text-decoration: underline" to="/signIn"
+        >Войти</router-link
+      >
+    </p>
   </v-form>
 </template>
 
